@@ -7,6 +7,8 @@ class HistoricScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageBase(
+      showBackButton: true,
+      title: 'Histórico',
       children: [],
     );
   }

@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 100,),
           PrimaryButton(label: "Começar",),
           SizedBox(height: 30,),
-          PrimaryButton(label: "Histórico",)
+          PrimaryButton(label: "Histórico", onPressed: (){Navigator.pushNamed(context, '/historic');},)
         ],
     );
   }
