@@ -1,3 +1,4 @@
+import 'package:cassino_pay/components/PageBase.dart';
 import 'package:cassino_pay/components/ui/PrimaryButton.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      child: Column(
+    return PageBase(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -19,7 +18,6 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 30,),
           PrimaryButton(label: "Histórico",)
         ],
-      ),
     );
   }
 }
