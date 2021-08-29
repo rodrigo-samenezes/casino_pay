@@ -1,6 +1,6 @@
 import 'package:cassino_pay/screens/HistoricScreen/HistoricScreen.dart';
 import 'package:cassino_pay/screens/HomeScreen/HomeScreen.dart';
-import 'package:cassino_pay/screens/qtdPessoasScreen.dart';
+import 'package:cassino_pay/screens/NightOutRegisterScreen/NightOutRegisterScreen.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -9,7 +9,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HistoricScreen(),
+      body: NightOutRegisterScreen(),
     );
   }
 }

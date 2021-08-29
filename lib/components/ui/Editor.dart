@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class Editor extends StatefulWidget {
-  final TextEditingController _controlador;
+class Editor extends StatelessWidget {
+  final TextEditingController _controller;
+  final String _label;
+  final TextInputType _keyboard;
 
-  Editor(this._controlador);
+  Editor(this._controller, this._label, this._keyboard);
 
-  @override
-  _EditorState createState() => _EditorState();
-}
-
-class _EditorState extends State<Editor> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
-        controller: widget._controlador,
-        style: TextStyle(fontSize: 24.0),
-        keyboardType: TextInputType.number,
+        controller: _controller,
+        style: TextStyle(fontSize: 16.0),
+        decoration: InputDecoration(
+          hintText: _label,
+        ),
+        keyboardType: _keyboard,
       ),
     );
   }
