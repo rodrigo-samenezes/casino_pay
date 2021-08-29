@@ -2,14 +2,19 @@ import 'package:cassino_pay/components/PageBase.dart';
 import 'package:cassino_pay/models/Bill.dart';
 import 'package:cassino_pay/models/Person.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final dateFormatter = DateFormat('dd/MM/yyyy');
 
 class HistoricScreen extends StatefulWidget {
-  late List<_HistoricItem> items;
+  List<_HistoricItem> _items = [];
   
   HistoricScreen({ Key? key }) : super(key: key) {
-    items = [
+    _items = [
       _HistoricItem(
         bill: Bill(
+          localName: "Bar do Nelson",
+          createdAt: DateTime(2021, 08, 10),
           people: [
             Person(name: 'Rodrigo', coins: 250),
             Person(name: 'Whadson', coins: 325),
@@ -22,6 +27,8 @@ class HistoricScreen extends StatefulWidget {
       ),
       _HistoricItem(
         bill: Bill(
+          localName: "Restaurante Praia Azul",
+          createdAt: DateTime(2021, 7, 10),
           people: [
             Person(name: 'Rodrigo', coins: 250),
             Person(name: 'Whadson', coins: 325),
@@ -34,6 +41,8 @@ class HistoricScreen extends StatefulWidget {
       ),
       _HistoricItem(
         bill: Bill(
+          localName: "MegaBurger",
+          createdAt: DateTime(2021, 7, 5),
           people: [
             Person(name: 'Rodrigo', coins: 250),
             Person(name: 'Whadson', coins: 325),
@@ -52,6 +61,7 @@ class HistoricScreen extends StatefulWidget {
 }
 
 class _HistoricScreenState extends State<HistoricScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return PageBase(
@@ -61,18 +71,60 @@ class _HistoricScreenState extends State<HistoricScreen> {
         ExpansionPanelList(
           expansionCallback: (int index, bool isExpanded) {
             setState(() {
-              
+              print("$index, $isExpanded");
+              this.widget._items[index].isExpanded = !isExpanded;
             });
           },
-          children: [
-            ExpansionPanel(
+          children: this.widget._items.map((e) => ExpansionPanel(
               headerBuilder: (BuildContext context, bool isExpanded) {
-                return ListTile(title: Text("Teste"));
+                return ListTile(title: Text("${e.bill.createdAt != null ? dateFormatter.format(e.bill.createdAt!) : ""}: ${e.bill.localName}"));
               },
-              body: Placeholder(fallbackHeight: 100,),
-              isExpanded: false
-            )
-          ],
+              body: Column(
+                children: [
+                  Text("Valor Total: R\$ ${e.bill.total.toStringAsFixed(2)}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  SizedBox(height: 18,),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Table(
+                      children: [
+                        TableRow(
+                          children: [
+                            Container(
+                              child: Text("Nome", style: TextStyle(fontWeight: FontWeight.bold))
+                            ),
+                            Container(
+                              child: Text("Fichas", style: TextStyle(fontWeight: FontWeight.bold))
+                            ),
+                            Container(
+                              child: Text("Cota", style: TextStyle(fontWeight: FontWeight.bold))
+                            ),
+                            Container(
+                              child: Text("Valor", style: TextStyle(fontWeight: FontWeight.bold))
+                            )
+                          ]
+                        ),
+                        ...e.bill.people.asMap().entries.map((p) => TableRow(
+                        children: [
+                          Container(
+                            child: Text("${p.value.name}")
+                          ),
+                          Container(
+                            child: Text("${p.value.coins}")
+                          ),
+                          Container(
+                            child: Text("${(e.bill.evaluatePartOfPersonIndex(p.key)*100).toStringAsFixed(2)}%")
+                          ),
+                          Container(
+                            child: Text("R\$ ${(e.bill.getValueOfPerson(p.key)).toStringAsFixed(2)}")
+                          )
+                        ]
+                      )).toList()],
+                    ),
+                  )
+                ]
+              ),
+              isExpanded: e.isExpanded
+            )).toList()
         )
       ],
     );

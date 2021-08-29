@@ -5,5 +5,5 @@ import 'package:flutter/cupertino.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   '/': (context) => const HomeScreen(),
-  '/historic': (context) => const HistoricScreen()
+  '/historic': (context) => HistoricScreen()
 };
