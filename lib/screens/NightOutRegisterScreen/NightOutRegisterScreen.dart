@@ -1,6 +1,7 @@
 import 'package:cassino_pay/components/PageBase.dart';
 import 'package:cassino_pay/components/ui/Editor.dart';
 import 'package:cassino_pay/components/ui/PrimaryButton.dart';
+import 'package:cassino_pay/screens/GamePlayScreen/GamePlayScreen.dart';
 import 'package:flutter/material.dart';
 
 class NightOutRegisterScreen extends StatelessWidget {
@@ -70,7 +71,11 @@ class NightOutRegisterScreen extends StatelessWidget {
               child: PrimaryButton(
                 label: "Bora lá!",
                 onPressed: () {
-                  Navigator.pushNamed(context, '/game_play'); //total_valor
+                  Navigator.pushNamed(context, GamePlayScreen.route, arguments: GamePlayScreenNavParams(
+                    peopleNames: List<String>.generate(
+                      peopleNumber, (index) => "Pessoa $index"),
+                      localName: this._night_out_description.text
+                  )); //total_valor
                 },
               ),
             )
