@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           AspectRatio(aspectRatio: 1, child: Image.asset("assets/home_screen_img.png")),
           SizedBox(height: 100,),
-          PrimaryButton(label: "Começar",),
+          PrimaryButton(label: "Começar", onPressed: (){Navigator.pushNamed(context, '/qtd_de_pessoas');}),
           SizedBox(height: 30,),
           PrimaryButton(label: "Histórico", onPressed: (){Navigator.pushNamed(context, '/historic');},)
         ],
