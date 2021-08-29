@@ -19,26 +19,28 @@ class PageBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            (this.showBackButton || this.title != null) ? Row(
-              children: [
-                this.showBackButton ? Row(children: [
-                  IconButton(onPressed: (){Navigator.maybePop(context);}, icon: Icon(Icons.arrow_back)),
-                  SizedBox(width: 24,),
-                ],) : Container(),
-                Text(this.title ?? "", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)
-              ],
-            ) : Container(),
-            Column(
-              mainAxisAlignment: this.mainAxisAlignment,
-              crossAxisAlignment: this.crossAxisAlignment,
-              children: this.children
-            ),
-          ],
-        )
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            children: [
+              (this.showBackButton || this.title != null) ? Row(
+                children: [
+                  this.showBackButton ? Row(children: [
+                    IconButton(onPressed: (){Navigator.maybePop(context);}, icon: Icon(Icons.arrow_back)),
+                    SizedBox(width: 24,),
+                  ],) : Container(),
+                  Text(this.title ?? "", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)
+                ],
+              ) : Container(),
+              Column(
+                mainAxisAlignment: this.mainAxisAlignment,
+                crossAxisAlignment: this.crossAxisAlignment,
+                children: this.children
+              ),
+            ],
+          )
+        ),
       ),
     );
   }

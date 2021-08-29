@@ -1,4 +1,5 @@
 import 'package:cassino_pay/components/PageBase.dart';
+import 'package:cassino_pay/components/ui/BillTable.dart';
 import 'package:cassino_pay/models/Bill.dart';
 import 'package:cassino_pay/models/Person.dart';
 import 'package:flutter/material.dart';
@@ -85,41 +86,7 @@ class _HistoricScreenState extends State<HistoricScreen> {
                   SizedBox(height: 18,),
                   Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Table(
-                      children: [
-                        TableRow(
-                          children: [
-                            Container(
-                              child: Text("Nome", style: TextStyle(fontWeight: FontWeight.bold))
-                            ),
-                            Container(
-                              child: Text("Fichas", style: TextStyle(fontWeight: FontWeight.bold))
-                            ),
-                            Container(
-                              child: Text("Cota", style: TextStyle(fontWeight: FontWeight.bold))
-                            ),
-                            Container(
-                              child: Text("Valor", style: TextStyle(fontWeight: FontWeight.bold))
-                            )
-                          ]
-                        ),
-                        ...e.bill.people.asMap().entries.map((p) => TableRow(
-                        children: [
-                          Container(
-                            child: Text("${p.value.name}")
-                          ),
-                          Container(
-                            child: Text("${p.value.coins}")
-                          ),
-                          Container(
-                            child: Text("${(e.bill.evaluatePartOfPersonIndex(p.key)*100).toStringAsFixed(2)}%")
-                          ),
-                          Container(
-                            child: Text("R\$ ${(e.bill.getValueOfPerson(p.key)).toStringAsFixed(2)}")
-                          )
-                        ]
-                      )).toList()],
-                    ),
+                    child: BillTable(bill: e.bill),
                   )
                 ]
               ),

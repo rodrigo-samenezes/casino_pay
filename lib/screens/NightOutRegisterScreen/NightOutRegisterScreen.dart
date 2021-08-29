@@ -70,7 +70,7 @@ class NightOutRegisterScreen extends StatelessWidget {
               child: PrimaryButton(
                 label: "Bora lá!",
                 onPressed: () {
-                  Navigator.pushNamed(context, ''); //total_valor
+                  Navigator.pushNamed(context, '/game_play'); //total_valor
                 },
               ),
             )
