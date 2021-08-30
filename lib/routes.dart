@@ -11,9 +11,11 @@ Map<String, Widget Function(BuildContext)> routes = {
   '/historic': (context) => HistoricScreen(),
   '/night_out_register': (context) => NightOutRegisterScreen(),
   GamePlayScreen.route: (context) {
-    final args = ModalRoute.of(context)!.settings.arguments as GamePlayScreenNavParams;
-    return GamePlayScreen(localName: args.localName, peopleNames: args.peopleNames,);
+    final args =
+        ModalRoute.of(context)!.settings.arguments as GamePlayScreenNavParams;
+    return GamePlayScreen(
+      localName: args.localName,
+      peopleNames: args.peopleNames,
+    );
   }
-  //'/total_valor' : (context) => TotalValorScreen(),
-  //'/game_page': (context) => GamePageScreen()
 };

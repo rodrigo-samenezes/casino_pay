@@ -1,6 +1,7 @@
 import 'package:cassino_pay/components/PageBase.dart';
 import 'package:cassino_pay/components/ui/Editor.dart';
 import 'package:cassino_pay/components/ui/PrimaryButton.dart';
+import 'package:cassino_pay/models/Person.dart';
 import 'package:cassino_pay/screens/GamePlayScreen/GamePlayScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -29,41 +30,7 @@ class NightOutRegisterScreen extends StatelessWidget {
               'Quantidade de Pessoas',
               style: TextStyle(fontSize: 28.0),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(100, 0, 0, 0),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Icon(Icons.remove),
-                    ),
-                  ),
-                  Container(
-                    width: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(),
-                      child: Center(
-                        child: Text(
-                          peopleNumber.toString(),
-                          style: TextStyle(fontSize: 28.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(0, 0, 100, 0),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Icon(Icons.add),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            PersonsList(),
             Container(
               height: 80,
             ),
@@ -71,11 +38,8 @@ class NightOutRegisterScreen extends StatelessWidget {
               child: PrimaryButton(
                 label: "Bora lá!",
                 onPressed: () {
-                  Navigator.pushNamed(context, GamePlayScreen.route, arguments: GamePlayScreenNavParams(
-                    peopleNames: List<String>.generate(
-                      peopleNumber, (index) => "Pessoa $index"),
-                      localName: this._night_out_description.text
-                  )); //total_valor
+                  Navigator.pushNamed(
+                      context, GamePlayScreen.route); //total_value
                 },
               ),
             )
@@ -83,5 +47,14 @@ class NightOutRegisterScreen extends StatelessWidget {
         ),
       )
     ]);
+  }
+}
+
+class PersonsList extends StatefulWidget {
+  final List<Person> persons = List.empty(growable: true);
+
+  @override
+  State<StatefulWidget> createState() {
+    return PersonsListState();
   }
 }
