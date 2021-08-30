@@ -1,5 +1,7 @@
 import 'package:cassino_pay/models/Person.dart';
 
+const int BASE_POINTS = 500;
+
 class Bill {
   late String localName;
   late double total;
@@ -13,8 +15,16 @@ class Bill {
     this.createdAt
   });
 
+  void addPerson(String name) {
+    people.add(Person(name: name, coins: BASE_POINTS));
+  }
+
   double evaluatePartOfPersonIndex(int index) {
-    return 0.23;
+    Person person = people[index];
+    int maxPoints = BASE_POINTS*people.length;
+    int baseTotalPoints = (maxPoints - BASE_POINTS)*people.length;
+    int invertedPoints = maxPoints - person.coins;
+    return invertedPoints/baseTotalPoints;
   }
 
   double getValueOfPerson(int index) {
