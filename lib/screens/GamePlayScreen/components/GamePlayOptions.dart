@@ -78,7 +78,7 @@ class GamePlayOptionsButton extends StatelessWidget {
               children: [
                 Icon(iconData, size: 80, color: Colors.green,),
                 Divider(color: Colors.green,),
-                Text(label, style: TextStyle(fontSize: 20, color: Colors.green),)
+                Text(label, style: TextStyle(fontSize: 18, color: Colors.green),)
               ],
             ),
           ),

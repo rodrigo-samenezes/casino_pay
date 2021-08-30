@@ -1,5 +1,6 @@
 import 'package:cassino_pay/components/PageBase.dart';
 import 'package:cassino_pay/components/ui/PrimaryButton.dart';
+import 'package:cassino_pay/screens/GamePlayScreen/GamePlayScreen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,7 +20,12 @@ class HomeScreen extends StatelessWidget {
         PrimaryButton(
             label: "Começar",
             onPressed: () {
-              Navigator.pushNamed(context, '/night_out_register');
+              //Navigator.pushNamed(context, '/night_out_register');
+              Navigator.pushNamed(
+                  context,
+                  GamePlayScreen.route,
+                  arguments: GamePlayScreenNavParams(peopleNames: ["peopleNames 1", "Person 2"], localName: "Local de teste")
+              );
             }),
         SizedBox(
           height: 30,

@@ -39,7 +39,10 @@ class NightOutRegisterScreen extends StatelessWidget {
                 label: "Bora lá!",
                 onPressed: () {
                   Navigator.pushNamed(
-                      context, GamePlayScreen.route); //total_value
+                      context,
+                      GamePlayScreen.route,
+                      arguments: GamePlayScreenNavParams(peopleNames: ["peopleNames 1", "Person 2"], localName: "Local de teste")
+                  ); //total_value
                 },
               ),
             )

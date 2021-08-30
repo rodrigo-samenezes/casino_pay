@@ -3,6 +3,7 @@ import 'package:cassino_pay/components/ui/BillTable.dart';
 import 'package:cassino_pay/models/Bill.dart';
 import 'package:cassino_pay/models/Person.dart';
 import 'package:cassino_pay/screens/GamePlayScreen/components/GamePlayAddOrEditPersonAlert.dart';
+import 'package:cassino_pay/screens/GamePlayScreen/components/GamePlayChangeValueAlert.dart';
 import 'package:cassino_pay/screens/GamePlayScreen/components/GamePlayScreenText.dart';
 import 'package:flutter/material.dart';
 import 'components/GamePlayOptions.dart';
@@ -47,6 +48,20 @@ class _GamePlayScreenState extends State<GamePlayScreen> {
     );
   }
 
+  void handleOnChangeValueButtonTap(BuildContext _context) {
+    showDialog(
+      context: _context,
+      builder: (context) => GamePlayChangeValueAlert(
+        currentValue: this.bill.total,
+        onSave: (value) {
+          setState(() {
+            this.bill.total = value;
+          });
+        }
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return PageBase(
@@ -54,7 +69,12 @@ class _GamePlayScreenState extends State<GamePlayScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 24,),
-        GamePlayScreenText("Valor: R\$ ${bill.total.toStringAsFixed(2)}"),
+        Row(
+          children: [
+            GamePlayScreenText("Valor: R\$ ${bill.total.toStringAsFixed(2)}"),
+            IconButton(onPressed: () => handleOnChangeValueButtonTap(context), icon: Icon(Icons.edit, color: Colors.green,))
+          ],
+        ),
         GamePlayScreenText("Qtd. de Pessoas: ${this.bill.people.length}"),
         SizedBox(height: 24,),
         BillTable(bill: bill),

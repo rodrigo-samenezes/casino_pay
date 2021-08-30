@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:cassino_pay/screens/GamePlayScreen/GamePlayScreen.dart';
 import 'package:cassino_pay/screens/HistoricScreen/HistoricScreen.dart';
 import 'package:cassino_pay/screens/HomeScreen/HomeScreen.dart';
@@ -11,8 +9,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   '/historic': (context) => HistoricScreen(),
   '/night_out_register': (context) => NightOutRegisterScreen(),
   GamePlayScreen.route: (context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as GamePlayScreenNavParams;
+    final args = ModalRoute.of(context)!.settings.arguments as GamePlayScreenNavParams;
     return GamePlayScreen(
       localName: args.localName,
       peopleNames: args.peopleNames,
