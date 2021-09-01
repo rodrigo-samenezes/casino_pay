@@ -27,10 +27,9 @@ class NightOutRegisterScreen extends StatelessWidget {
               height: 50,
             ),
             Text(
-              'Quantidade de Pessoas',
-              style: TextStyle(fontSize: 28.0),
+              'E quem tava lá?',
+              style: TextStyle(fontSize: 24.0),
             ),
-            PersonsList(),
             Container(
               height: 80,
             ),
@@ -38,11 +37,10 @@ class NightOutRegisterScreen extends StatelessWidget {
               child: PrimaryButton(
                 label: "Bora lá!",
                 onPressed: () {
-                  Navigator.pushNamed(
-                      context,
-                      GamePlayScreen.route,
-                      arguments: GamePlayScreenNavParams(peopleNames: ["peopleNames 1", "Person 2"], localName: "Local de teste")
-                  ); //total_value
+                  Navigator.pushNamed(context, GamePlayScreen.route,
+                      arguments: GamePlayScreenNavParams(
+                          peopleNames: ["João", "Flávio"],
+                          localName: 'Bar do Nelson')); //total_value
                 },
               ),
             )

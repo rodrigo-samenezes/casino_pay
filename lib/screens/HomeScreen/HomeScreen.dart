@@ -20,12 +20,12 @@ class HomeScreen extends StatelessWidget {
         PrimaryButton(
             label: "Começar",
             onPressed: () {
-              //Navigator.pushNamed(context, '/night_out_register');
-              Navigator.pushNamed(
-                  context,
-                  GamePlayScreen.route,
-                  arguments: GamePlayScreenNavParams(peopleNames: ["peopleNames 1", "Person 2"], localName: "Local de teste")
-              );
+              Navigator.pushNamed(context, '/night_out_register');
+              // Navigator.pushNamed(
+              //     context,
+              //     GamePlayScreen.route,
+              //     arguments: GamePlayScreenNavParams(peopleNames: ["peopleNames 1", "Person 2"], localName: "Local de teste")
+              // );
             }),
         SizedBox(
           height: 30,
